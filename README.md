@@ -8,8 +8,6 @@ Groupie lets you treat your content as logical groups and handles change notific
 
 # Try it out:
 
-[ ![Download](https://api.bintray.com/packages/lisawray/maven/groupie/images/download.svg) ](https://bintray.com/lisawray/maven/groupie/_latestVersion)
-
 ```gradle
 implementation "com.xwray:groupie:$groupie_version"
 ```
@@ -180,12 +178,34 @@ In your project level `build.gradle` file, include:
 
 ```
 buildscript {
-    ext.kotlin_version = '1.3.71'
+    ext.kotlin_version = '1.4.10'
+
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+In new projects, the `settings.gradle` file has a `dependencyResolutionManagement` block, which needs to specify the repository as well:
+```
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }  // <--
+        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 ```
@@ -226,8 +246,8 @@ Add to your app module's `build.gradle`:
 
 ```gradle
 android {
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -264,8 +284,8 @@ Add to your app module's build.gradle:
 
 ```gradle
 android {
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

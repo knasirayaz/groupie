@@ -1,8 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -41,6 +44,4 @@ dependencies {
     }
     compileOnly("androidx.annotation:annotation:1.1.0")
 }
-
-apply from: rootProject.file('release-bintray.gradle')
 
