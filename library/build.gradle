@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 buildscript {
     repositories {
@@ -9,6 +8,9 @@ buildscript {
 }
 
 archivesBaseName = 'groupie'
+/*
+apply plugin: 'com.github.dcendents.android-maven'
+*/
 
 android {
     compileSdkVersion rootProject.sdkVersion
